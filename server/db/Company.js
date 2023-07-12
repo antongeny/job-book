@@ -1,33 +1,25 @@
-const { STRING } = require("sequelize");
+const { STRING, TEXT } = require("sequelize");
 const db = require("./db");
 const { UUID, UUIDV4 } = db.Sequelize;
 
-const People = db.define("people",{
+const Company = db.define("company",{
   id: {
     type: UUID,
     primaryKey: true,
     defaultValue: UUIDV4,
   },
-  firstName: {
+  companyName: {
     type: STRING,
     allowNull: true,
   },
-  lastName: {
-    type: STRING,
-    allowNull: true,
-  },
-  email: {
+  linkedIn: {
     type: STRING,
     allowNull: true,
     validate: {
-      isEmail: true,
+      isUrl: true
     },
   },
-  phoneNumber: {
-    type: STRING,
-    allowNull: true,
-  },
-  linkedin: {
+  website: {
     type: STRING,
     unique: true,
     allowNull: true,
@@ -35,6 +27,10 @@ const People = db.define("people",{
       isUrl: true
 		}
   },
+  notes: {
+    type: TEXT,
+    allowNull: true,
+  },
 })
 
-module.exports = People;
+module.exports = Company;
