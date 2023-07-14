@@ -1,8 +1,9 @@
-// const Date = require("./Date");
-// const User = require("./User");
-// const People = require("./people");
-// const JobApplication = require("./JobApplication");
-// const Company = require("./Company");
+const db = require("./db");
+const Date = require("./Date");
+const User = require("./User");
+const People = require("./people");
+const JobApplication = require("./JobApplication");
+const Company = require("./Company");
 
 
 // //Company Associations
@@ -38,6 +39,5 @@
 // JobApplication.belongsTo(Company);
 
 
-// module.exports = {
-//   People, Company, Date, User, JobApplication,
-// }
+module.exports = { User, People, Company, Date, User, JobApplication,
+};
