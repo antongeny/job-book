@@ -1,12 +1,43 @@
 const Date = require("./Date");
 const User = require("./User");
-const People = require("./People");
+const People = require("server/db/People.js");
 const JobApplication = require("./JobApplication");
 const Company = require("./Company");
 
 
-People.hasone(Date);
+//Company Associations
+Company.hasMany(People);
+People.belongsTo(Company);
+
+
+//User Associatons
+User.hasMany(People);
+People.belongsTo(User);
+
+User.hasMany(Date);
+Date.belongsTo(User);
+
+User.hasMany(Company);
+Company.belongsTo(User);
+
+User.hasMany(JobApplication);
+JobApplication.belongsTo(User);
+
+//Date Associations
+Date.hasMany(JobApplication)
+JobApplication.belongsTo(Date);
+
+People.hasMany(Date);
+Date.belongsToMany(People, {through: "reachouts"});
+
+//Company Associations
+Company.hasMany(People);
+People.belongsTo(Company);
+
+Company.hasMany(JobApplication);
+JobApplication.belongsTo(Company);
+
 
 module.exports = {
-  People,
+  People, Company, Date, User, JobApplication,
 }
