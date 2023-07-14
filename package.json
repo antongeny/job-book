@@ -18,8 +18,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "seed": "SEED=true node server/index.js"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
