@@ -21,7 +21,7 @@ const company = [
   },
 ];
 
-const dates = [
+const date = [
   {
     date: new Date("2023-01-01")
   },
@@ -46,4 +46,57 @@ const people = [
     phoneNumber: "560-507-5087",
     linkedin: "https://www.linkedin.com/company/apple/",
   },
-]
+];
+
+const jobApplication = [{
+  status: "pending",
+  url: "https://jobs.careers.microsoft.com/global/en/job/1584535/Data-Technical-Program-Manager%2C-Industry-Solutions-Engineering",
+  notes: "they'll never hire me"
+},
+
+];
+
+const seed = async () => {
+
+	console.log("👩‍🌾 STARTING SEED...🌱 🚜");
+	await db.sync({ force: true });
+
+  console.log("adding users");
+  const [userOne] = await Promise.all(
+    user.map((user) => User.create(user)));
+
+  console.log("adding people");
+  const [personOne, personTwo] = await Promise.all(
+    people.map((people) => People.create(people)));
+
+  console.log("adding comapnies");
+  const [companyOne, companyTwo] = await Promise.all(
+    company.map((company) => Company.create(company)));
+
+  console.log("adding job applications");
+  const [applicationOne] = await Promise.all(
+    jobApplication.map((jobApplication) => JobApplication.create(jobApplication)));
+
+  console.log("adding dates");
+  const [dateOne, dateTwo, dateThree] = await Promise.all(
+    date.map((date) => Date.create(date)));
+
+  applicationOne.addCompanies(companyOne)
+  applicationOne.addDates(dateThree)
+
+  personOne.addCompanies(companyOne);
+  personTwo.addCompanies(companyTwo);
+  personOne.addDates(dateOne);
+  personTwo.addDates(dateTwo);
+
+  userOne.addDates([dateOne, dateTwo, dateThree]);
+  userOne.addPeople([personOne, personTwo]);
+  userOne.addCompanies([companyOne, companyTwo]);
+  userOne.addJobApplication(applicationOne);
+
+  console.log("Done seeding...🌴");
+
+};
+
+
+seed();
