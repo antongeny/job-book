@@ -90,18 +90,19 @@ const seed = async () => {
 
   console.log("adding dates");
   const [dateOne, dateTwo, dateThree] = await Promise.all(
-    date.map((date) => Date.create(date)));
+    date.map((date) => Date.create(date))
+  );
 
   applicationOne.setCompany(companyOne);
 
-  // applicationOne.addDates(dateThree)
+  applicationOne.setDate(dateThree);
 
   personOne.setCompany(companyOne);
   personTwo.setCompany(companyTwo);
-  // personOne.addDates(dateOne);
-  // personTwo.addDates(dateTwo);
+  personOne.setDates(dateOne);
+  personTwo.setDates(dateTwo);
 
-  // bob.addDates([dateOne, dateTwo, dateThree]);
+  user.setDates([dateOne, dateTwo, dateThree]);
   user.setPeople([personOne, personTwo]);
   user.setCompanies([companyOne, companyTwo]);
   user.setJobApplications(applicationOne);
