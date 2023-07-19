@@ -1,14 +1,19 @@
 const express = require("express");
-const { People } = require("../db");
+const { People, Date, Company } = require("../db");
 const router = express.Router();
 
 
 
 router.get("/", async (req, res, next) => {
     try{
-        const user = {user} = req.body
+        // const user = {user} = req.body
 
-        const people = People.findAll(where: user = user)
+        const people = await People.findAll({
+            // where: { user: user},
+            include: [Date, Company],
+        })
+
+        res.send(people);
 
     }
     catch (err){
@@ -16,7 +21,6 @@ router.get("/", async (req, res, next) => {
     }
 
 })
-
 
 
 
