@@ -6,10 +6,10 @@ const router = express.Router();
 
 router.get("/", async (req, res, next) => {
     try{
-        // const user = {user} = req.body
+        const user = {user} = req.body
 
         const people = await People.findAll({
-            // where: { user: user},
+            where: { user: user},
             include: [Date, Company],
         })
 
