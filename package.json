@@ -6,23 +6,29 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1",
     "pg": "^8.11.1",
     "react": "^18.2.0",
     "react-date-object": "^2.1.7",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
     "sequelize": "^6.32.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.88.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "seed": "SEED=true node server/index.js"
+    "seed": "SEED=true node server/index.js",
+    "start:dev": "JWT=felix nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev",
+    "build:dev": "npm run build -- --watch --mode=development"
   },
   "eslintConfig": {
     "extends": [
@@ -41,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.1"
   }
 }

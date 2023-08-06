@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Set up routes
-// app.use("/api", require("./api"));
+app.use("/api", require("./api"));
 
 // Pass back everything else / front-end
 
