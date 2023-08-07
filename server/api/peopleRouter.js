@@ -2,8 +2,6 @@ const express = require("express");
 const { People, Date, Company } = require("../db");
 const router = express.Router();
 
-
-
 router.get("/", async (req, res, next) => {
     try{
         const user = {user} = req.body
